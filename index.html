@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Кино по жанрам</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Верхнее меню (навигация) -->
+    <header>
+      <div class="logo">MovieForYou</div>
+      <button class="burger" id="burger" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="main-nav">
+        <a href="#action">Экшен</a>
+        <a href="#comedy">Комедия</a>
+        <a href="#drama">Драма</a>
+        <a href="#horror">Ужасы</a>
+        <a href="#sci-fi">Фантастика</a>
+        <a href="#animation">Анимация</a>
+        <a href="#favorites" class="nav-favorites">♥ Избранное</a>
+      </nav>
+    </header>
+
+    <!-- Главный контейнер со всеми секциями -->
+    <main>
+      <!-- Модальное окно (появляется поверх всего при клике на фильм) -->
+      <div id="modal" class="modal hidden">
+        <div class="modal-content">
+          <button class="close-modal">×</button>
+          <div class="video-wrapper">
+            <iframe
+              id="trailer-iframe"
+              width="100%"
+              height="100%"
+              style="border: none"
+              allow="autoplay; fullscreen"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="movie-modal-info">
+            <h3 id="modal-movie-title"></h3>
+            <p id="modal-movie-description"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Секция Экшен -->
+      <section id="action">
+        <h2>Экшен</h2>
+        <div class="movies-row" id="action-row"></div>
+      </section>
+
+      <!-- Секция Комедия -->
+      <section id="comedy">
+        <h2>Комедия</h2>
+        <div class="movies-row" id="comedy-row"></div>
+      </section>
+
+      <!-- Секция Драма -->
+      <section id="drama">
+        <h2>Драма</h2>
+        <div class="movies-row" id="drama-row"></div>
+      </section>
+
+      <!-- Секция Ужасы -->
+      <section id="horror">
+        <h2>Ужасы</h2>
+        <div class="movies-row" id="horror-row"></div>
+      </section>
+
+      <!-- Секция Фантастика -->
+      <section id="sci-fi">
+        <h2>Фантастика</h2>
+        <div class="movies-row" id="sci-fi-row"></div>
+      </section>
+
+      <!-- Секция Анимация -->
+      <section id="animation">
+        <h2>Анимация</h2>
+        <div class="movies-row" id="animation-row"></div>
+      </section>
+
+      <!-- Секция Избранное -->
+      <section id="favorites">
+        <h2>Избранное</h2>
+        <p class="favorites-empty" id="favorites-empty">Нажмите ♥ на любом фильме, чтобы добавить в избранное</p>
+        <div class="movies-row" id="favorites-row"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

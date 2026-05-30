@@ -1,0 +1,310 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0f0f1a;
+  color: #e0e0e0;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  padding: 12px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e50914;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 24px;
+  font-size: 1.05rem;
+}
+
+nav a:hover {
+  color: #e50914;
+}
+
+/* Гамбургер — скрыт на десктопе */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Анимация крестика когда меню открыто */
+.burger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 700px) {
+  .burger {
+    display: flex;
+  }
+
+  #main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.97);
+    flex-direction: column;
+    padding: 12px 0;
+    border-top: 1px solid #222;
+  }
+
+  #main-nav.open {
+    display: flex;
+  }
+
+  #main-nav a {
+    margin: 0;
+    padding: 14px 5%;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  #main-nav a:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Секции с фильмами */
+section {
+  padding: 80px 5% 40px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.movies-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 12px;
+  scroll-behavior: smooth;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  user-select: none;
+}
+
+.movies-row.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.movie-card {
+  flex: 0 0 220px;
+  width: 220px;
+  background: #1a1a2e;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+}
+
+.movie-info {
+  padding: 10px;
+}
+
+.movie-title {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.movie-info-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-rating {
+  color: #f39c12;
+  font-weight: bold;
+}
+
+.movie-duration {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.heart-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  transition: color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.heart-btn:hover {
+  color: rgba(229, 9, 20, 0.65);
+  transform: scale(1.3);
+}
+
+.heart-btn.liked {
+  color: #e50914;
+}
+
+.heart-btn.liked:hover {
+  transform: scale(1.3);
+}
+
+.favorites-empty {
+  color: #555;
+  font-style: italic;
+  padding: 4px 0 16px;
+}
+
+.nav-favorites {
+  color: #e50914 !important;
+}
+
+/* Модальное окно */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 960px;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.movie-modal-info {
+  padding: 20px 24px 24px;
+  border-top: 1px solid #2a2a3e;
+}
+
+.movie-modal-info h3 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.movie-modal-info p {
+  font-size: 0.95rem;
+  color: #b0b0c8;
+  line-height: 1.6;
+}
+
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 2.2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Заглушка вместо постера */
+.movie-poster-placeholder {
+  height: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+  padding: 20px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #e0e0e0;
+}
+
+/* Бейдж «Новинка» вместо рейтинга */
+.movie-rating--new {
+  color: #2ecc71;
+}
+
+/* Прокрутка на мобильных */
+.movies-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.movies-row::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
